@@ -1,13 +1,9 @@
 <?php
-/* =========================
-   XATOLARNI KO‘RSATISH
-========================= */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-/* =========================
-   DATABASE + TABLE YARATISH
-========================= */
+
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -32,11 +28,8 @@ $conn->query("CREATE TABLE IF NOT EXISTS users (
     maoshi DECIMAL(12,2) DEFAULT 0
 )");
 
-/* =========================
-   CRUD LOGIKA
-========================= */
 
-// CREATE
+
 if (isset($_POST['add'])) {
     $ism     = $conn->real_escape_string($_POST['ism']);
     $familya = $conn->real_escape_string($_POST['familya']);
@@ -50,7 +43,6 @@ if (isset($_POST['add'])) {
     exit;
 }
 
-// DELETE
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     $conn->query("DELETE FROM users WHERE id=$id");
@@ -58,7 +50,6 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// UPDATE
 if (isset($_POST['update'])) {
     $id      = (int)$_POST['id'];
     $ism     = $conn->real_escape_string($_POST['ism']);
@@ -74,11 +65,9 @@ if (isset($_POST['update'])) {
     exit;
 }
 
-// READ
 $users = $conn->query("SELECT * FROM users ORDER BY id DESC");
 ?>
 
-<!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
@@ -176,3 +165,4 @@ Saqlash
 
 </body>
 </html>
+
